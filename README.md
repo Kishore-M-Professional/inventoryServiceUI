@@ -1,3 +1,46 @@
+# Inventory Service UI
+
+## Description
+
+This is a frontend service for Inventory Service developed using React JS with BootStrap Support.
+
+## Prerequistics
+
+How I updated the default Port to 3006?
+
+* In package.json file under scripts of <i>start</i> need to add <i>"set PORT=3006 &&"</i> with existing statement to run the react application in PORT 3006.
+
+Where I added BootStrap V5 changes?
+
+* In index.html file we need to add the CSS link tag of BootStrap inside <i>head tag</i>. It need to be added before other CSS or script tags because it should load first before other things get loaded.
+* BootStrap components requires some of javascript functions, they require their own JavaScript plugins and Popper. We need to add the <i>script bundle</i> of BootStrap near the end of our page in index.html file, right before the closing </body> tag, to enable them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>---------------------------------------------------------------------------------------------</p>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
