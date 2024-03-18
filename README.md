@@ -1,5 +1,21 @@
 # Inventory Service UI
 
+## Basic Commands
+
+* "{}" - dynamic names, "[]" - optional.
+
+* Create react app <i>"npx create-react-app {Your-App-Name}"
+* To update/install dependencies of node modules <i>"npm install [--legacy-peer-deps]"</i>
+* To start server <i>"npm start"</i>
+* To install redux and saga in single command <i>"npm install @reduxjs/toolkit react-redux redux-saga"</i>
+
+## Links
+
+* <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/"> BootStrap V5 </a>
+* <a href="https://redux.js.org/introduction/getting-started">Redux ToolKit (RTK) </a>
+* <a href="https://redux-saga.js.org/docs/introduction/GettingStarted">Redux-Saga </a>
+
+
 ## Description
 
 This is a frontend service for Inventory Service developed using React JS with BootStrap Support.
@@ -14,6 +30,13 @@ Where I added BootStrap V5 changes?
 
 * In index.html file we need to add the CSS link tag of BootStrap inside <i>head tag</i>. It need to be added before other CSS or script tags because it should load first before other things get loaded.
 * BootStrap components requires some of javascript functions, they require their own JavaScript plugins and Popper. We need to add the <i>script bundle</i> of BootStrap near the end of our page in index.html file, right before the closing </body> tag, to enable them.
+
+What is Redux Toolkit?
+
+* Redux Toolkit (also known as "RTK" for short) is the official recommended approach for writing Redux logic. Advancded version of Traditional Redux or Redux core.
+* The <i>@reduxjs/toolkit</i> package wraps around the core redux package, and contains API methods and common dependencies that we think are essential for building a Redux app. 
+* Redux Toolkit builds the app in best practices, simplifies most Redux tasks, prevents common mistakes, and makes it easier to write Redux applications. <br/>
+<b>NOTE: </b> @react-redux must be installed with @reduxjs/toolkit.
 
 
 
