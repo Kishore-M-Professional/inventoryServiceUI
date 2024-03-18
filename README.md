@@ -4,7 +4,7 @@
 
 * "{}" - dynamic names, "[]" - optional.
 
-* Create react app <i>"npx create-react-app {Your-App-Name}"
+* Create react app <i>"npx create-react-app {Your-App-Name}"</i>
 * To update/install dependencies of node modules <i>"npm install [--legacy-peer-deps]"</i>
 * To start server <i>"npm start"</i>
 * To install redux and saga in single command <i>"npm install @reduxjs/toolkit react-redux redux-saga"</i>
