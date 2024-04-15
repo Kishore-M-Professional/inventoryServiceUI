@@ -1,13 +1,18 @@
-import './App.css';
-
-import Header from './components/Header';
-import InventoryItems from './components/DisplayItems';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import AddItem from "./components/AddItem";
+import NavigationSlide from './components/NavigationSlide';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <InventoryItems />
+      <NavigationSlide />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/additem" element={<AddItem />} />
+        <Route path="/fallbackdata" element={<Home />} />
+      </Routes>
     </div>
   );
 }
