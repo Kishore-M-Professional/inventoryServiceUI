@@ -4,7 +4,7 @@ import Header from "./Header";
 function Home() {
   return (
     <>
-      <Header />
+      <Header value={"title"} />
       <InventoryItems />
     </>
   );

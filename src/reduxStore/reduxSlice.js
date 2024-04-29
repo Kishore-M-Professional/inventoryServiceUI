@@ -21,6 +21,8 @@ export const inventorySlice = createSlice({
             state.inventoryItems = action.payload;
             state.isFallback = action.payload.isFallback;
             state.isLoading = false;
+            state.error.status = 200;
+            state.error.msg = "";
         },
         getInventoryFailure:(state,action) => {
             state.error.msg = action.payload;
@@ -29,10 +31,13 @@ export const inventorySlice = createSlice({
         },
         getFallBackData:(state) => {
             state.isLoading = true;
+        },
+        addItemApiCall:(state) => {
+            state.isLoading = true;
         }
     }    
 })
 
-export const {getInventoryFetch,getInventorySuccess,getInventoryFailure,getFallBackData} = inventorySlice.actions;
+export const {getInventoryFetch,getInventorySuccess,getInventoryFailure,getFallBackData,addItemApiCall} = inventorySlice.actions;
 
 export default inventorySlice.reducer;
