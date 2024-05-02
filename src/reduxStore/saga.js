@@ -1,5 +1,5 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
-import { getInventorySuccess, getInventoryFailure, getInventoryFetch } from "./reduxSlice";
+import { getInventorySuccess, getInventoryFailure, getInventoryFetch, getItemSuccess } from "./reduxSlice";
 import * as api from "../common/api";
 
 function* workerInventoryFetch() {
@@ -64,6 +64,58 @@ function* workerAddItemApiCall(action){
   }
 }
 
+function* getItemApiWatcher() {
+  yield takeEvery("inventoryReducer/getItemApiCall",workerGetItemApiCall);
+}
+
+function* workerGetItemApiCall(action){
+  try{
+    console.log("ID is "+JSON.stringify(action.payload));
+    const url = api.GET_ITEM+action.payload;
+    const response = yield call(fetch, url)
+    if(response.status === 200){
+      const data = yield response.json();
+      console.log("GET Item resp: "+JSON.stringify(data));
+      yield put(getItemSuccess(data));
+    }else {
+      const message = "Error while retrieving an Item from the inventory for ID: "+action.payload;
+      console.log(message);
+      yield put(getInventoryFailure(message));
+    }
+  } catch(error) {
+    yield put(getInventoryFailure(error.message));
+  }
+}
+
+function* updateItemApiWatcher() {
+  yield takeEvery("inventoryReducer/updateItemApiCall",workerUpdateItemApiCall);
+}
+
+function* workerUpdateItemApiCall(action){
+  try{
+    console.log("Update request is "+JSON.stringify(action.payload));
+    const url = api.UPDATE_ITEM+action.payload.itemId;
+    const response = yield call(fetch, url,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(action.payload),
+    })
+    if(response.status === 200){
+      const data = yield response.json();
+      console.log("PUT Item resp: "+JSON.stringify(data));
+      yield put(getInventoryFetch());
+    }else {
+      const message = "Error while updating an Item from the inventory for ID: "+action.payload.itemId;
+      console.log(message);
+      yield put(getInventoryFailure(message));
+    }
+  } catch(error) {
+    yield put(getInventoryFailure(error.message));
+  }
+}
+
 export default function* rootSaga() {
-  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher()]);
+  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher(),getItemApiWatcher(),updateItemApiWatcher()]);
 }

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import AddItem from "./components/AddItem";
 import NavigationSlide from './components/NavigationSlide';
+import UpdateItem from "./components/UpdateItem";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/additem" element={<AddItem />} />
         <Route path="/fallbackdata" element={<Home />} />
+        <Route path="/update/:id" element={<UpdateItem />} />
       </Routes>
     </div>
   );

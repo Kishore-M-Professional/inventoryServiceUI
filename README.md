@@ -14,6 +14,7 @@
 * <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/"> BootStrap V5 </a>
 * <a href="https://redux.js.org/introduction/getting-started">Redux ToolKit (RTK) </a>
 * <a href="https://redux-saga.js.org/docs/introduction/GettingStarted">Redux-Saga </a>
+* <a href="https://react-icons.github.io/react-icons"> React Icons </a>
 
 
 ## Description
@@ -37,6 +38,12 @@ What is Redux Toolkit?
 * The <i>@reduxjs/toolkit</i> package wraps around the core redux package, and contains API methods and common dependencies that we think are essential for building a Redux app. 
 * Redux Toolkit builds the app in best practices, simplifies most Redux tasks, prevents common mistakes, and makes it easier to write Redux applications. <br/>
 <b>NOTE: </b> @react-redux must be installed with @reduxjs/toolkit.
+
+How to use React Icons?
+
+* Run the command to install react-icons <i>npm i react-icons</i>
+* Use the react-icons by directly importing it to the files.
+* Refer the React-Icons link for various icon features.
 
 
 

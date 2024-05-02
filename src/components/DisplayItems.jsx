@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { VscEdit } from "react-icons/vsc";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { getInventoryFetch } from "../reduxStore/reduxSlice";
 
 function InventoryItems() {
@@ -41,6 +43,7 @@ function InventoryItems() {
                 <td>Item Name</td>
                 <td>Item Price</td>
                 <td>Quantity</td>
+                <td>Action</td>
               </tr>
             </thead>
           )}
@@ -54,6 +57,7 @@ function InventoryItems() {
                       <td>{item.itemName}</td>
                       <td>{item.itemPrice}</td>
                       <td>{item.quantity}</td>
+                      <td><Link to={'/update/'+item.itemId}><VscEdit /></Link></td>
                     </tr>
                   );
                 } else {
