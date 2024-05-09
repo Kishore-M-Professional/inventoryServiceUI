@@ -116,6 +116,31 @@ function* workerUpdateItemApiCall(action){
   }
 }
 
+function* deleteItemApiWatcher() {
+  yield takeEvery("inventoryReducer/deleteItemApiCall",workerDeleteItemApiCall);
+}
+
+function* workerDeleteItemApiCall(action){
+  try{
+    console.log("Delete request for ID : "+JSON.stringify(action.payload));
+    const url = api.DELETE_ITEM+'?id='+action.payload;
+    const response = yield call(fetch, url,{
+      method: 'DELETE',
+    })
+    if(response.status === 200){
+      const data = yield response.text();
+      console.log("DELETE Item resp: "+data);
+      yield put(getInventoryFetch());
+    }else {
+      const message = "Error while deleting an Item from the inventory for ID: "+action.payload;
+      console.log(message);
+      yield put(getInventoryFailure(message));
+    }
+  } catch(error) {
+    yield put(getInventoryFailure(error.message));
+  }
+}
+
 export default function* rootSaga() {
-  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher(),getItemApiWatcher(),updateItemApiWatcher()]);
+  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher(),getItemApiWatcher(),updateItemApiWatcher(),deleteItemApiWatcher()]);
 }

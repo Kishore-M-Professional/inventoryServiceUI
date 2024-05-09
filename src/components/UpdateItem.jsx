@@ -37,7 +37,7 @@ function UpdateItem() {
 
   const invokeUpdateItemApi = (event) => {
     event.preventDefault();
-    console.log("invoking the updateItem API call");
+    console.log("invoking the updateItem API call for ID: ",itemId);
     const updateRequest = {
       itemId: itemId,
       itemName: itemName,
@@ -57,7 +57,8 @@ function UpdateItem() {
 
   return (
     <div>
-      <Header value={"updateItem"} />
+      <Header value={"updateItem"}/>
+      <h2><i>{id}</i></h2>
       {errorData.status === 200 ? (
         <>
           <form className="flex mt-3" onSubmit={invokeUpdateItemApi}>

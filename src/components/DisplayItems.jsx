@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
-import { VscEdit } from "react-icons/vsc";
+import { VscEdit, VscTrash } from "react-icons/vsc";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getInventoryFetch } from "../reduxStore/reduxSlice";
+import * as Constants from "../common/constants";
+import "../styles/DisplayItems.css";
 
 function InventoryItems() {
   const dispatch = useDispatch();
-  const inventoryItems = useSelector((state) => state.inventory.inventoryItems);
+  const inventoryItemsData = useSelector(
+    (state) => state.inventory.inventoryItems
+  );
   const error = useSelector((state) => state.inventory.error);
   const isFallback = useSelector((state) => state.inventory.isFallback);
   const isLoading = useSelector((state) => state.inventory.isLoading);
@@ -15,7 +19,7 @@ function InventoryItems() {
     dispatch(getInventoryFetch());
   }, [dispatch]);
 
-  console.log("resp: ", inventoryItems);
+  console.log("resp: ", inventoryItemsData);
   console.log("error: ", error.msg);
   return (
     <>
@@ -48,8 +52,10 @@ function InventoryItems() {
             </thead>
           )}
           <tbody>
-            {error.status === 200 && !isLoading ? (
-              inventoryItems.map((item) => {
+            {error.status === 200 &&
+            !isLoading &&
+            inventoryItemsData.length !== 0 ? (
+              inventoryItemsData.map((item) => {
                 if (item.itemId !== undefined) {
                   return (
                     <tr key={item.itemId}>
@@ -57,7 +63,14 @@ function InventoryItems() {
                       <td>{item.itemName}</td>
                       <td>{item.itemPrice}</td>
                       <td>{item.quantity}</td>
-                      <td><Link to={'/update/'+item.itemId}><VscEdit /></Link></td>
+                      <td>
+                        <Link to={`/update/${item.itemId}`}>
+                          <VscEdit />
+                        </Link>
+                        <Link to={`/delete/${item.itemId}`}>
+                          <VscTrash />
+                        </Link>
+                      </td>
                     </tr>
                   );
                 } else {
@@ -70,6 +83,10 @@ function InventoryItems() {
                   );
                 }
               })
+            ) : error.msg.length === 0 ? (
+              <tr>
+                <td colSpan={5}>{Constants.NO_ITEMS}</td>
+              </tr>
             ) : (
               <p>{error.msg}</p>
             )}
@@ -80,4 +97,4 @@ function InventoryItems() {
   );
 }
 
-export default InventoryItems;
+export default React.memo(InventoryItems);
