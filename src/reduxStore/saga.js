@@ -7,6 +7,7 @@ function* workerInventoryFetch() {
     const response = yield call(fetch, api.GET_ALL);
     if (response.status === 200) {
       const data = yield response.json();
+      data.isFallback = false;
       yield put(getInventorySuccess(data));
     } else {
       const fallBackResp = yield call(fetch, api.GET_FALLBACK);

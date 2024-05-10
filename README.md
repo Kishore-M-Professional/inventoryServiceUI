@@ -45,6 +45,11 @@ How to use React Icons?
 * Use the react-icons by directly importing it to the files.
 * Refer the React-Icons link for various icon features.
 
+How to read String from response?
+
+* Need to use <i> response.text() </i> to consume the string which has been returned from backend.
+* If it is an JSON object then need to use <i>response.json()</i> to use the object in UI. 
+
 
 
 

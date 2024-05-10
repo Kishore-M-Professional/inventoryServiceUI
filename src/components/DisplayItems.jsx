@@ -18,7 +18,7 @@ function InventoryItems() {
   useEffect(() => {
     dispatch(getInventoryFetch());
   }, [dispatch]);
-
+  
   console.log("resp: ", inventoryItemsData);
   console.log("error: ", error.msg);
   return (
@@ -56,7 +56,7 @@ function InventoryItems() {
             !isLoading &&
             inventoryItemsData.length !== 0 ? (
               inventoryItemsData.map((item) => {
-                if (item.itemId !== undefined) {
+                if (!isFallback) {
                   return (
                     <tr key={item.itemId}>
                       <td>{item.itemId}</td>
@@ -85,10 +85,12 @@ function InventoryItems() {
               })
             ) : error.msg.length === 0 ? (
               <tr>
-                <td colSpan={5}>{Constants.NO_ITEMS}</td>
+                <td colSpan={isFallback?3:5}>{Constants.NO_ITEMS}</td>
               </tr>
             ) : (
-              <p>{error.msg}</p>
+              <tr>
+                <td colSpan={isFallback?3:5}>{error.msg}</td>
+              </tr>
             )}
           </tbody>
         </table>

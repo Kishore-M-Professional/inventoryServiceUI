@@ -5,6 +5,7 @@ import AddItem from "./components/AddItem";
 import NavigationSlide from './components/NavigationSlide';
 import UpdateItem from "./components/UpdateItem";
 import DeleteItem from "./components/DeleteItem";
+import FallBackData from "./components/FallBackData";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/additem" element={<AddItem />} />
-        <Route path="/fallbackdata" element={<Home />} />
+        <Route path="/fallbackdata" element={<FallBackData />} />
         <Route path="/update/:id" element={<UpdateItem />} />
         <Route path="/delete/:id" element={<DeleteItem />} />
       </Routes>
