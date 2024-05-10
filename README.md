@@ -48,8 +48,14 @@ How to use React Icons?
 How to read String from response?
 
 * Need to use <i> response.text() </i> to consume the string which has been returned from backend.
-* If it is an JSON object then need to use <i>response.json()</i> to use the object in UI. 
+* If it is an JSON object then need to use <i>response.json()</i> to use the object in UI.
 
+What and how to use CreatePortal in React js?
+
+* <i>createPortal</i> lets you render some children into a different part of the DOM.
+* <b>Step 1:</b> In <i>index.html</i> file create another div with different id name similar to root.
+* <b>Step 2:</b> Import <i>createPortal</i> inside the component from <i>react-dom</i> and wrap the content you wanna render it in the new id name.
+* <b>Refer:</b> <i>src\components\PopupModal.jsx</i>
 
 
 

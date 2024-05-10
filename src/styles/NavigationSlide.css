@@ -37,7 +37,12 @@ nav ul li a, button {
     color: white;
 }
 
-nav ul li a:not(.active):hover {
+nav ul li a:not(.active):hover, nav button:hover {
     background-color: #172554;
     color: white;
+}
+
+nav button {
+    background: transparent;
+    border: none;
 }

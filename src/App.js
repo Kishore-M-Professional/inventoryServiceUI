@@ -6,6 +6,7 @@ import NavigationSlide from './components/NavigationSlide';
 import UpdateItem from "./components/UpdateItem";
 import DeleteItem from "./components/DeleteItem";
 import FallBackData from "./components/FallBackData";
+import PopupModal from "./components/PopupModal";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/fallbackdata" element={<FallBackData />} />
         <Route path="/update/:id" element={<UpdateItem />} />
         <Route path="/delete/:id" element={<DeleteItem />} />
+        <Route path="/deleteall" element={<PopupModal />} />
       </Routes>
     </div>
   );

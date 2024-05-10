@@ -49,13 +49,17 @@ export const inventorySlice = createSlice({
         updateItemApiCall:(state) => {
             state.isLoading = true;
         },
-        deleteItemApiCall:(state,action) => {
+        deleteItemApiCall:(state) => {
             state.isLoading = true;
         },
+        deleteAllApiCall:(state) => {
+            state.isLoading = true;
+        }
     }    
 })
 
 export const {getInventoryFetch,getInventorySuccess,getInventoryFailure,
-    getFallBackData,addItemApiCall,getItemApiCall,getItemSuccess,updateItemApiCall,deleteItemApiCall,deleteItemSuccess} = inventorySlice.actions;
+    getFallBackData,addItemApiCall,getItemApiCall,getItemSuccess,updateItemApiCall,
+    deleteItemApiCall,deleteAllApiCall} = inventorySlice.actions;
 
 export default inventorySlice.reducer;

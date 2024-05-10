@@ -142,6 +142,30 @@ function* workerDeleteItemApiCall(action){
   }
 }
 
+function* deleteAllApiWatcher() {
+  yield takeEvery("inventoryReducer/deleteAllApiCall",workerDeleteAllApiCall);
+}
+
+function* workerDeleteAllApiCall(){
+  try{
+    console.log("Delete Request for all the records is invoked!!!");
+    const response = yield call(fetch, api.DELETE_ALL,{
+      method: 'DELETE',
+    })
+    if(response.status === 200){
+      const data = yield response.text();
+      console.log("DELETE ALL resp: "+data);
+      yield put(getInventoryFetch());
+    }else {
+      const message = "Error while deleting all the records!!!";
+      console.log(message);
+      yield put(getInventoryFailure(message));
+    }
+  } catch(error) {
+    yield put(getInventoryFailure(error.message));
+  }
+}
+
 export default function* rootSaga() {
-  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher(),getItemApiWatcher(),updateItemApiWatcher(),deleteItemApiWatcher()]);
+  yield all([inventorySagaWatcher(),fallBackSagaWatcher(),addItemApiWatcher(),getItemApiWatcher(),updateItemApiWatcher(),deleteItemApiWatcher(),deleteAllApiWatcher()]);
 }
