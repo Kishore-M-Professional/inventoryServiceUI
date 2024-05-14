@@ -7,6 +7,7 @@ import UpdateItem from "./components/UpdateItem";
 import DeleteItem from "./components/DeleteItem";
 import FallBackData from "./components/FallBackData";
 import PopupModal from "./components/PopupModal";
+import GetItem from "./components/GetItem";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/update/:id" element={<UpdateItem />} />
         <Route path="/delete/:id" element={<DeleteItem />} />
         <Route path="/deleteall" element={<PopupModal />} />
+        <Route path="/get/:id" element={<GetItem />} />
       </Routes>
     </div>
   );

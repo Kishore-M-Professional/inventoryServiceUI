@@ -28,13 +28,17 @@ nav ul li {
     list-style: none;
 }
 
-nav ul li a, button {
+nav ul li a, button, input {
     display: block;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0.5rem;
     margin: 1rem 0.5rem 0rem;
     color: white;
+}
+
+nav ul li a input{
+    color: black;
 }
 
 nav ul li a:not(.active):hover, nav button:hover {

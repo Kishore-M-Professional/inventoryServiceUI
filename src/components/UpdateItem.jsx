@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getItemApiCall, updateItemApiCall } from "../reduxStore/reduxSlice";
 import Header from "./Header";
+import PopupModal from "./PopupModal";
 
 function UpdateItem() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function UpdateItem() {
   const errorData = useSelector((state) => state.inventory.error);
   const updateItem = useSelector((state) => state.inventory.getItem);
 
+  const [show, setShow] = useState(false);
   const [itemId, setItemId] = useState("ItemID");
   const [itemName, setItemName] = useState("itemName");
   const [itemPrice, setItemPrice] = useState("itemPrice");
@@ -35,18 +37,17 @@ function UpdateItem() {
     }
   };
 
-  const invokeUpdateItemApi = (event) => {
-    event.preventDefault();
-    console.log("invoking the updateItem API call for ID: ",itemId);
+  const invokeUpdateItemApi = () => {
+    console.log("invoking the updateItem API call for ID: ", itemId);
     const updateRequest = {
       itemId: itemId,
       itemName: itemName,
       itemPrice: itemPrice,
-      quantity: quantity
-    }
+      quantity: quantity,
+    };
     dispatch(updateItemApiCall(updateRequest));
     navigate("/");
-  }
+  };
 
   const handleResetChange = () => {
     setItemId(updateItem.itemId);
@@ -57,11 +58,13 @@ function UpdateItem() {
 
   return (
     <div>
-      <Header value={"updateItem"}/>
-      <h2><i>{id}</i></h2>
+      <Header value={"updateItem"} />
+      <h2>
+        <i>{id}</i>
+      </h2>
       {errorData.status === 200 ? (
         <>
-          <form className="flex mt-3" onSubmit={invokeUpdateItemApi}>
+          <form className="flex mt-3">
             <div className="row mb-3">
               <label htmlFor="itemId" className="col-sm-2 col-form-label">
                 Item ID
@@ -122,7 +125,11 @@ function UpdateItem() {
                 />
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => setShow(true)}
+            >
               Update
             </button>
             <button
@@ -138,6 +145,15 @@ function UpdateItem() {
         <>
           <h3>{errorData.msg}</h3>
         </>
+      )}
+      {show && (
+        <PopupModal
+          show={show}
+          closeModal={() => setShow(false)}
+          buttonValue="Update"
+          clickAction={invokeUpdateItemApi}
+          itemId={itemId}
+        />
       )}
     </div>
   );
